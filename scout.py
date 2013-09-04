@@ -198,12 +198,14 @@ class Body:
             tempUWP -= 4
 
         self.temp = min(12, max(0, tempUWP) )
-        temperatures = {-1:5, 0:5, 1:5, 2:5, 3:222, 4:222, 5:273, 6:273, 7:273, 8:273, 9:273, 10:304, 11:304, 12:354, 13:4500, 14:4500}
-        (a,b) = (temperatures[self.temp], temperatures[self.temp+1])
-        if self.atmos in [0,1]:
-            (a,b) = (temperatures[self.temp-1],temperatures[self.temp+2])
+        temperatures = {-1:2, 0:2, 1:5, 2:100, 3:222, 4:252, 5:263, 6:270, 7:273, 8:283, 9:293, 10:304, 11:325, 12:354, 13:4500, 14:4500}
 
-        self.tempKelvin = sorted([prng.randint(a,b), prng.randint(a,b)])
+        if self.atmos in [0,1]:
+            (a,b) = (temperatures[self.temp-1], temperatures[self.temp] )
+            self.tempKelvin = sorted([prng.randint(40,150), prng.randint(a,b)])        
+        else:
+            (a,b) = (temperatures[self.temp], temperatures[self.temp+1]+40)
+            self.tempKelvin = sorted([prng.randint(a,b), prng.randint(a,b)])
 
         hydroUWP = d(6) + d(6) - 7 + self.size
         if self.temp >= 12:
