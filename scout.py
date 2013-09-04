@@ -1,11 +1,5 @@
 import random
 
-def sum_over(a):
-    y = 0
-    for x in a:
-        y += x
-    return y    
-
 
 class System:
     def __init__(self):
@@ -312,7 +306,7 @@ class Body:
                 return 'F'
             else:
                 return {10:'A', 11:'B', 12:'C', 13:'D', 14:'E', 15:'F'}[n]
-        string = toHex(self.size)+toHex(self.atmos)+toHex(self.hydro)+toHex(self.pop)+toHex(self.government)+toHex(self.law)
+        string = toHex(self.size)+toHex(self.atmos)+toHex(self.hydro)+toHex(self.pop)+toHex(self.government)+toHex(self.law)+"-"+self.starport
         for code in self.codes:
             string += " "+code
         return string    
